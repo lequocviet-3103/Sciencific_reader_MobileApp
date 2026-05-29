@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -6,13 +5,13 @@ import 'package:flutter/foundation.dart';
 
 class ApiService {
   ApiService()
-      : dio = Dio(
-          BaseOptions(
-            baseUrl: _resolveBaseUrl(),
-            connectTimeout: const Duration(seconds: 10),
-            receiveTimeout: const Duration(seconds: 60),
-          ),
-        );
+    : dio = Dio(
+        BaseOptions(
+          baseUrl: _resolveBaseUrl(),
+          connectTimeout: const Duration(seconds: 10),
+          receiveTimeout: const Duration(seconds: 60),
+        ),
+      );
 
   final Dio dio;
 

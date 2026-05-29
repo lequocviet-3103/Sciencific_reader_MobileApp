@@ -8,11 +8,7 @@ class PdfPreview extends StatefulWidget {
   final Object? file;
   final Uint8List? bytes;
 
-  const PdfPreview({
-    super.key,
-    this.file,
-    this.bytes,
-  });
+  const PdfPreview({super.key, this.file, this.bytes});
 
   @override
   State<PdfPreview> createState() => _PdfPreviewState();
@@ -46,17 +42,14 @@ class _PdfPreviewState extends State<PdfPreview> {
     final url = html.Url.createObjectUrlFromBlob(blob);
     final type = 'pdf-preview-${DateTime.now().microsecondsSinceEpoch}';
 
-    ui_web.platformViewRegistry.registerViewFactory(
-      type,
-      (int viewId) {
-        final element = html.IFrameElement()
-          ..src = url
-          ..style.border = 'none'
-          ..style.width = '100%'
-          ..style.height = '100%';
-        return element;
-      },
-    );
+    ui_web.platformViewRegistry.registerViewFactory(type, (int viewId) {
+      final element = html.IFrameElement()
+        ..src = url
+        ..style.border = 'none'
+        ..style.width = '100%'
+        ..style.height = '100%';
+      return element;
+    });
 
     setState(() {
       viewType = type;
@@ -80,15 +73,11 @@ class _PdfPreviewState extends State<PdfPreview> {
   @override
   Widget build(BuildContext context) {
     if (widget.bytes == null) {
-      return const Center(
-        child: Text("Choose a PDF to preview"),
-      );
+      return const Center(child: Text("Choose a PDF to preview"));
     }
 
     if (viewType == null) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     return HtmlElementView(viewType: viewType!);

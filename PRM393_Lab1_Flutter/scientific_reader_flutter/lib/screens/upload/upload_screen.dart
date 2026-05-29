@@ -12,16 +12,13 @@ import '../../services/upload_service.dart';
 import '../../widgets/pdf_preview/pdf_preview.dart';
 
 class UploadScreen extends StatefulWidget {
-
   const UploadScreen({super.key});
 
   @override
-  State<UploadScreen> createState()
-      => _UploadScreenState();
+  State<UploadScreen> createState() => _UploadScreenState();
 }
 
-class _UploadScreenState
-    extends State<UploadScreen> {
+class _UploadScreenState extends State<UploadScreen> {
   bool converting = false;
   double? uploadProgress;
 
@@ -118,8 +115,7 @@ class _UploadScreenState
         uploadResult = result;
       });
 
-      if (result.markdownFile != null &&
-          result.markdownFile!.isNotEmpty) {
+      if (result.markdownFile != null && result.markdownFile!.isNotEmpty) {
         await _saveRecentPaper(result.markdownFile!);
       }
     } catch (e) {
@@ -143,28 +139,20 @@ class _UploadScreenState
     );
 
     final items = await recentPapersService.load();
-    final updated = [item, ...items]
-        .take(20)
-        .toList();
+    final updated = [item, ...items].take(20).toList();
     await recentPapersService.save(updated);
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
-      appBar: AppBar(
-        title: const Text("Upload PDF"),
-      ),
+      appBar: AppBar(title: const Text("Upload PDF")),
 
       body: Padding(
         padding: const EdgeInsets.all(16),
 
         child: Column(
-
           children: [
-
             Row(
               children: [
                 Expanded(
@@ -202,9 +190,7 @@ class _UploadScreenState
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Column(
                   children: [
-                    LinearProgressIndicator(
-                      value: uploadProgress,
-                    ),
+                    LinearProgressIndicator(value: uploadProgress),
                     const SizedBox(height: 8),
                     const Text("Converting..."),
                   ],
@@ -236,10 +222,7 @@ class _UploadScreenState
       return PdfPreview(bytes: selectedBytes);
     }
 
-    return PdfPreview(
-      file: selectedFile,
-      bytes: selectedBytes,
-    );
+    return PdfPreview(file: selectedFile, bytes: selectedBytes);
   }
 
   Widget _buildResultPanel() {
@@ -252,10 +235,7 @@ class _UploadScreenState
           border: Border.all(color: Colors.red.shade200),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(
-          errorMessage!,
-          style: const TextStyle(color: Colors.red),
-        ),
+        child: Text(errorMessage!, style: const TextStyle(color: Colors.red)),
       );
     }
 
@@ -263,13 +243,10 @@ class _UploadScreenState
       return const SizedBox.shrink();
     }
 
-    if (uploadResult!.markdown != null &&
-        uploadResult!.markdown!.isNotEmpty) {
+    if (uploadResult!.markdown != null && uploadResult!.markdown!.isNotEmpty) {
       return SizedBox(
         height: 180,
-        child: Markdown(
-          data: uploadResult!.markdown!,
-        ),
+        child: Markdown(data: uploadResult!.markdown!),
       );
     }
 

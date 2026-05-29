@@ -9,10 +9,7 @@ class UploadResult {
   final String? markdown;
   final String? markdownFile;
 
-  const UploadResult({
-    this.markdown,
-    this.markdownFile,
-  });
+  const UploadResult({this.markdown, this.markdownFile});
 }
 
 class UploadService {
@@ -31,15 +28,9 @@ class UploadService {
     MultipartFile pdfPart;
 
     if (file != null) {
-      pdfPart = await MultipartFile.fromFile(
-        file.path,
-        filename: fileName,
-      );
+      pdfPart = await MultipartFile.fromFile(file.path, filename: fileName);
     } else {
-      pdfPart = MultipartFile.fromBytes(
-        bytes!,
-        filename: fileName,
-      );
+      pdfPart = MultipartFile.fromBytes(bytes!, filename: fileName);
     }
 
     final formData = FormData.fromMap({

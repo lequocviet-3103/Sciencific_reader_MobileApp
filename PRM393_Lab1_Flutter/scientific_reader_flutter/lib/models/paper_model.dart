@@ -17,8 +17,7 @@ class PaperModel {
     required this.concepts,
   });
 
-  factory PaperModel.fromJson(
-      Map<String, dynamic> json) {
+  factory PaperModel.fromJson(Map<String, dynamic> json) {
     return PaperModel(
       title: json["title"] ?? "",
       abstract: json["abstract"] ?? "",
