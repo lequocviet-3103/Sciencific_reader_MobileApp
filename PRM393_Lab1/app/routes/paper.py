@@ -20,7 +20,7 @@ os.makedirs(VAULT_FOLDER, exist_ok=True)
 
 
 @router.post("/process-paper")
-async def process_paper(file: UploadFile = File(...)):
+def process_paper(file: UploadFile = File(...)):
 
     try:
 
@@ -50,7 +50,7 @@ async def process_paper(file: UploadFile = File(...)):
         print("MARKDOWN GENERATED")
 
         # Step 4: Save markdown
-        md_filename = os.path.splitext(safe_filename)[0] + ".md"
+        md_filename = os.path.splitext(unique_filename)[0] + ".md"
 
         saved_path = save_markdown(
             vault_path=VAULT_FOLDER, filename=md_filename, content=markdown
