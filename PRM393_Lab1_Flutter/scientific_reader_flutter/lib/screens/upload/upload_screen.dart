@@ -111,6 +111,7 @@ class _UploadScreenState extends State<UploadScreen> {
         },
       );
 
+      if (!mounted) return;
       setState(() {
         uploadResult = result;
       });
@@ -119,11 +120,13 @@ class _UploadScreenState extends State<UploadScreen> {
         await _saveRecentPaper(result.markdownFile!);
       }
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         errorMessage = e.toString();
       });
     }
 
+    if (!mounted) return;
     setState(() {
       converting = false;
       uploadProgress = null;

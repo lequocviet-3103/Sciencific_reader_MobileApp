@@ -1,24 +1,25 @@
 def generate_markdown(data):
-
-    concepts = "\n".join([f"- [[{concept}]]" for concept in data["concepts"]])
+    concepts = "\n".join(
+        [f"- [[{concept}]]" for concept in data.get("concepts", [])]
+    )
 
     markdown = f"""
-# {data['title']}
+# {data.get('title', 'Unknown')}
 
 ## Abstract
-{data['abstract']}
+{data.get('abstract', '')}
 
 ## Introduction
-{data['introduction']}
+{data.get('introduction', '')}
 
 ## Methods
-{data['methods']}
+{data.get('methods', '')}
 
 ## Results
-{data['results']}
+{data.get('results', '')}
 
 ## Discussion
-{data['discussion']}
+{data.get('discussion', '')}
 
 ## Concepts
 {concepts}
