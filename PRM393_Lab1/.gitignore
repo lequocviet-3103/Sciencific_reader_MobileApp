@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.so
+*.egg-info/
+.dist-info/
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment files
+.env
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# App runtime data
+uploads/
+outputs/
+
+# OS
+.DS_Store
+Thumbs.db
