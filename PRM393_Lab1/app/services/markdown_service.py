@@ -1,8 +1,6 @@
 def generate_markdown(data):
 
-    concepts = "\n".join(
-        [f"- [[{concept}]]" for concept in data["concepts"]]
-    )
+    concepts = "\n".join([f"- [[{concept}]]" for concept in data["concepts"]])
 
     markdown = f"""
 # {data['title']}

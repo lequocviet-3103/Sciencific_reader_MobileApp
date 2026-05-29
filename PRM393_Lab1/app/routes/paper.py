@@ -17,18 +17,12 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
 @router.post("/process-paper")
-async def process_paper(
-    file: UploadFile = File(...),
-    vault_path: str = Form(...)
-):
+async def process_paper(file: UploadFile = File(...), vault_path: str = Form(...)):
 
     try:
 
         # Save PDF
-        pdf_path = os.path.join(
-            UPLOAD_FOLDER,
-            file.filename
-        )
+        pdf_path = os.path.join(UPLOAD_FOLDER, file.filename)
 
         with open(pdf_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
@@ -54,23 +48,15 @@ async def process_paper(
         md_filename = file.filename.replace(".pdf", ".md")
 
         saved_path = save_markdown(
-            vault_path=vault_path,
-            filename=md_filename,
-            content=markdown
+            vault_path=vault_path, filename=md_filename, content=markdown
         )
 
         print("MARKDOWN SAVED:", saved_path)
 
-        return {
-            "message": "success",
-            "markdown_file": saved_path
-        }
+        return {"message": "success", "markdown_file": saved_path}
 
     except Exception as e:
 
         traceback.print_exc()
 
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
+        raise HTTPException(status_code=500, detail=str(e))
