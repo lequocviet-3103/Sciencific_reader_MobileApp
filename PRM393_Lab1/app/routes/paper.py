@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException
+from fastapi import APIRouter, UploadFile, File, HTTPException
 
 from app.services.extract_service import extract_text_from_pdf
 from app.services.groq_service import analyze_paper
@@ -12,17 +12,20 @@ import traceback
 router = APIRouter()
 
 UPLOAD_FOLDER = "uploads"
+VAULT_FOLDER = "vault"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(VAULT_FOLDER, exist_ok=True)
 
 
 @router.post("/process-paper")
-async def process_paper(file: UploadFile = File(...), vault_path: str = Form(...)):
+async def process_paper(file: UploadFile = File(...)):
 
     try:
 
         # Save PDF
-        pdf_path = os.path.join(UPLOAD_FOLDER, file.filename)
+        safe_filename = os.path.basename(file.filename) or "upload.pdf"
+        pdf_path = os.path.join(UPLOAD_FOLDER, safe_filename)
 
         with open(pdf_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
@@ -45,10 +48,10 @@ async def process_paper(file: UploadFile = File(...), vault_path: str = Form(...
         print("MARKDOWN GENERATED")
 
         # Step 4: Save markdown
-        md_filename = file.filename.replace(".pdf", ".md")
+        md_filename = os.path.splitext(safe_filename)[0] + ".md"
 
         saved_path = save_markdown(
-            vault_path=vault_path, filename=md_filename, content=markdown
+            vault_path=VAULT_FOLDER, filename=md_filename, content=markdown
         )
 
         print("MARKDOWN SAVED:", saved_path)

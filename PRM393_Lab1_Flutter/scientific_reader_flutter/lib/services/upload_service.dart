@@ -35,7 +35,6 @@ class UploadService {
 
     final formData = FormData.fromMap({
       "file": pdfPart,
-      "vault_path": "D:\\SecondBrain\\Second Brain",
     });
 
     final response = await dio.post(
