@@ -8,6 +8,7 @@ from app.services.vault_service import save_markdown
 import shutil
 import os
 import traceback
+import uuid
 
 router = APIRouter()
 
@@ -24,8 +25,9 @@ async def process_paper(file: UploadFile = File(...)):
     try:
 
         # Save PDF
-        safe_filename = os.path.basename(file.filename) or "upload.pdf"
-        pdf_path = os.path.join(UPLOAD_FOLDER, safe_filename)
+        safe_filename = os.path.basename(file.filename or "") or "upload.pdf"
+        unique_filename = f"{uuid.uuid4().hex}_{safe_filename}"
+        pdf_path = os.path.join(UPLOAD_FOLDER, unique_filename)
 
         with open(pdf_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
