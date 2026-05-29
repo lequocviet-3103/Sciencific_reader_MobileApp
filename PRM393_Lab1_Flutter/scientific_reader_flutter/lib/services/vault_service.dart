@@ -12,7 +12,8 @@ class VaultService {
       papersFolder.createSync(recursive: true);
     }
 
-    final file = File("$vaultPath/Papers/$fileName");
+    final safeFileName = fileName.replaceAll(RegExp(r'[/\\]'), "");
+    final file = File("$vaultPath/Papers/$safeFileName");
 
     await file.writeAsString(markdown);
   }
