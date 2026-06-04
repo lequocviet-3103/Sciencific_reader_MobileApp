@@ -11,10 +11,14 @@
             "id": "4a628b0a72313b96",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Papers/TestShortPDF1_76755324.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "TestShortPDF1_76755324"
             }
           }
         ]
@@ -74,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 302.5
   },
   "right": {
     "id": "0c2650137c981eb0",
@@ -178,17 +182,22 @@
   },
   "active": "4a628b0a72313b96",
   "lastOpenFiles": [
-    "Papers/6a4048cb62c44219b483147c4cc25410_TestShortPDF1.md",
-    "Untitled.canvas",
-    "Papers/f3d6fd8affd24816a347594c034933e5_Research NCKH.md",
+    "Papers/29cf200a84cc41669206b8f22b329cc2_TestShortPDF1.md",
+    "Papers/TestShortPDF1_76755324.md",
+    "Papers/TestShortPDF1_a924a5db.md",
+    "Papers/TestShortPDF1.md",
     "Papers/a08ac80b8e6d4f5992caf77298ff3976_TestShortPDF1.md",
+    "Papers/f3d6fd8affd24816a347594c034933e5_Research NCKH.md",
     "Papers/f669381196b3440aabc34778bdd1dd53_Research NCKH.md",
     "Papers/Research NCKH.md",
+    "Papers/98460783d4f943aa8ac83711057edd92_TestShortPDF1.md",
+    "Papers/72e09fc24a274df78c048f863c547704_TestShortPDF1.md",
+    "Papers/7ffbce2456754ea19b37e239da9bf02c_Research NCKH.md",
+    "Papers/6a4048cb62c44219b483147c4cc25410_TestShortPDF1.md",
+    "Untitled.canvas",
     "Papers/7043375bef6446989ac36deace62d9d2_PRN232- LAB 1 - Rest API Basics and Deployment.md",
-    "Papers/29cf200a84cc41669206b8f22b329cc2_TestShortPDF1.md",
     "Papers/7b7069c0498e490db61e020835f1fc9d_Research NCKH.md",
     "Mô hình ngôn ngữ lớn.md",
-    "Papers/TestShortPDF1.md",
     "Papers/67a55dc913274753b9d4acc645f1023c_30363-Article Text-34417-1-2-20240324.md"
   ]
 }

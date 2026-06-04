@@ -32,7 +32,11 @@ def process_paper(file: UploadFile = File(...)):
 
         # Save PDF
         safe_filename = os.path.basename(file.filename or "") or "upload.pdf"
-        unique_filename = f"{uuid.uuid4().hex}_{safe_filename}"
+        short_id = uuid.uuid4().hex[:8]
+        name_without_ext = os.path.splitext(safe_filename)[0]
+        ext = os.path.splitext(safe_filename)[1]
+
+        unique_filename = f"{name_without_ext}_{short_id}{ext}"
         pdf_path = os.path.join(UPLOAD_FOLDER, unique_filename)
 
         with open(pdf_path, "wb") as buffer:
