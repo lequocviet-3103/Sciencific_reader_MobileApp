@@ -40,6 +40,7 @@ dependencies:
   flutter_markdown: ^0.7.1
   syncfusion_flutter_pdfviewer: ^27.2.5
   shared_preferences: ^2.2.2
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

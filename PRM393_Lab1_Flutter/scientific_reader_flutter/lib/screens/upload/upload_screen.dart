@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../models/recent_paper.dart';
 import '../../services/recent_papers_service.dart';
+import '../editor/editor_screen.dart';
 import '../../services/upload_service.dart';
 import '../../widgets/pdf_preview/pdf_preview.dart';
 
@@ -119,18 +119,34 @@ class _UploadScreenState extends State<UploadScreen> {
       if (result.markdownFile != null && result.markdownFile!.isNotEmpty) {
         await _saveRecentPaper(result.markdownFile!);
       }
+
+      if (!mounted) return;
+      setState(() {
+        converting = false;
+        uploadProgress = null;
+      });
+
+      if ((result.markdownContent ?? '').isNotEmpty &&
+          (result.markdownFile ?? '').isNotEmpty) {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => EditorScreen(
+              markdownContent: result.markdownContent!,
+              markdownFile: result.markdownFile!,
+            ),
+          ),
+        );
+      }
+
+      return;
     } catch (e) {
       if (!mounted) return;
       setState(() {
         errorMessage = e.toString();
       });
+      return;
     }
-
-    if (!mounted) return;
-    setState(() {
-      converting = false;
-      uploadProgress = null;
-    });
   }
 
   Future<void> _saveRecentPaper(String savedPath) async {
@@ -246,10 +262,11 @@ class _UploadScreenState extends State<UploadScreen> {
       return const SizedBox.shrink();
     }
 
-    if (uploadResult!.markdown != null && uploadResult!.markdown!.isNotEmpty) {
+    if (uploadResult!.markdownContent != null &&
+        uploadResult!.markdownContent!.isNotEmpty) {
       return SizedBox(
         height: 180,
-        child: Markdown(data: uploadResult!.markdown!),
+        child: Markdown(data: uploadResult!.markdownContent!),
       );
     }
 

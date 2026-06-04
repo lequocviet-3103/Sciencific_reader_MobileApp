@@ -6,10 +6,10 @@ import 'package:dio/dio.dart';
 import 'api_service.dart';
 
 class UploadResult {
-  final String? markdown;
+  final String? markdownContent;
   final String? markdownFile;
 
-  const UploadResult({this.markdown, this.markdownFile});
+  const UploadResult({this.markdownContent, this.markdownFile});
 }
 
 class UploadService {
@@ -50,7 +50,7 @@ class UploadService {
 
     if (data is Map<String, dynamic>) {
       return UploadResult(
-        markdown: data["markdown"] as String?,
+        markdownContent: data["markdown_content"] as String?,
         markdownFile: data["markdown_file"] as String?,
       );
     }
